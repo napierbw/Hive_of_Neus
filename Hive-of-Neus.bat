@@ -96,6 +96,10 @@ set /a attackNum1=%random% %%3 +1
 SET /A player_damage=%player_attack%+%attackNum1%
 set /a attackNum2=%random% %%3 +1
 set /A goblin_damage=%goblin_attack%+%attackNum2%
+set /a player_defend=%player_damage% - 2
+set /a goblin_defend=%goblin_damage% - 3
+SET /A potionNum1=%random% %%3 +1
+set /a potion_heal=%potionNum1%+15
 cls
 echo Health: %player_health%     Attack: %player_attack%
 echo Health Potions: %health_potions%
@@ -110,8 +114,28 @@ set /p answer=Type the number of your option and press enter :
 if %answer%==1 (
     SET /A goblin_health -= %player_damage%
     SET /A player_health -= %goblin_damage%
+    echo.
+    echo You stab the goblin and it strikes back!
     echo The goblin takes %player_damage% damage!
     echo You take %goblin_damage% damage!
+    pause
+)
+if %answer%==2 (
+    SET /A goblin_health -= %player_defend%
+    SET /A player_health -= %goblin_defend%
+    echo.
+    echo You hold your spear out and the goblin scrapes it as it rushes to club you.
+    echo The goblin takes %player_defend% damage!
+    echo You take %goblin_defend% damage!
+    pause
+)
+if %answer%==3 (
+    SET /A player_health += %potion_heal%
+    set /a player_health -= %goblin_damage%
+    SET /A health_potions -= 1
+    echo.
+    echo You chug a potion from your inventory and gain %potion_heal% health.
+    echo The goblin clubs you and you take %goblin_damage% damage!
     pause
 )
 if %goblin_health% LEQ 0 (
@@ -122,13 +146,14 @@ if %goblin_health% LEQ 0 (
         echo %battles_won%
         echo %health_potions%
     ) > savegame.sav
-    goto Victory
+    if %battles_won% GEQ 5 (
+        goto Final_Battle
+    )
+    goto Random_Event_1
 )
 if %player_health% LEQ 0 (
     goto Credits
 )
-if %answer%==2 goto Menu
-if %answer%==3 goto Menu
 goto Event_1_1
 
 :Event_2
@@ -137,11 +162,17 @@ echo Event_2
 pause
 goto Menu
 
+:Random_Event_1
+cls
+echo Random_Event_1
+pause
+goto Menu
+
 :Final_Battle
 cls
 echo Final_Battle
 pause
-goto Menu
+goto Victory
 
 :Victory
 cls
