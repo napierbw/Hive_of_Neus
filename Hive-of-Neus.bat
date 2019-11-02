@@ -140,12 +140,20 @@ if %answer%==2 (
     pause
 )
 if %answer%==3 (
-    SET /A player_health += %potion_heal%
-    set /a player_health -= %goblin_damage%
-    SET /A health_potions -= 1
-    echo.
-    echo You chug a potion from your inventory and gain %potion_heal% health.
-    echo The goblin clubs you and you take %goblin_damage% damage!
+    if %health_potions% GEQ 1 (
+        SET /A player_health += %potion_heal%
+        set /a player_health -= %goblin_damage%
+        SET /A health_potions -= 1
+        echo.
+        echo You chug a potion from your inventory and gain %potion_heal% health.
+        echo The goblin clubs you and you take %goblin_damage% damage!
+    )
+    if %health_potions% LEQ 0 (
+        echo.
+        echo You have no health potions.
+        pause
+        goto Event_1_1
+    )
     pause
 )
 if %goblin_health% LEQ 0 (
@@ -156,6 +164,7 @@ if %goblin_health% LEQ 0 (
         echo %battles_won%
         echo %health_potions%
     ) > savegame.sav
+
     if %battles_won% GEQ 5 (
         goto Final_Battle
     )
@@ -216,11 +225,92 @@ echo                           ^(^\^\
 echo.
 rem Art taken from: https://www.asciiart.eu/animals/insects/bees, Escape characters added here
 pause
-goto Random_Event_1
+goto Event_2_1
+:Event_2_1
+cls
+echo Health: %player_health%     Attack: %player_attack%
+echo Health Potions: %health_potions%
+echo.
+echo The giant hornets you.
+echo.
+echo 1. Stay and fight.
+echo 2. Run deeper into the cave.
+if %health_potions% GEQ 1 echo 3. Drink health potion.
+set /p answer=Type the number of your option and press enter : 
+if %answer%==1 (
+    cls
+    SET /A player_health -= 4
+    echo Health: %player_health%     Attack: %player_attack%
+    echo Health Potions: %health_potions%
+    echo.
+    echo As you turn to fight the hornets they collide with you at full force and shove you deeper into the cave.
+    echo You fall through a tunnel and the entrance shuts behind you.
+    echo.
+    pause
+    (
+	    echo %player_health%
+	    echo %player_attack%
+        echo %battles_won%
+        echo %health_potions%
+    ) > savegame.sav
+    goto Random_Event_1
+)
+if %answer%==2 (
+    cls
+    echo Health: %player_health%     Attack: %player_attack%
+    echo Health Potions: %health_potions%
+    echo.
+    echo You run deeper into the cavern through a small entrance that shuts behind you as soon as you enter the next room.
+    echo You cannot escape the cavern the way you entered
+    echo.
+    pause
+    goto Random_Event_1
+)
+if %answer%==3 (
+    if %health_potions% GEQ 1 (
+        cls
+        SET /A player_health += %potion_heal%
+        SET /A health_potions -= 1
+        echo Health: %player_health%     Attack: %player_attack%
+        echo Health Potions: %health_potions%
+        echo.
+        echo You chug a potion from your inventory and gain %potion_heal% health.
+        echo.
+        pause
+        (
+	        echo %player_health%
+	        echo %player_attack%
+            echo %battles_won%
+            echo %health_potions%
+        ) > savegame.sav
+        goto Random_Event_1
+    )
+    if %health_potions% LEQ 0 (
+        cls
+        echo Health: %player_health%     Attack: %player_attack%
+        echo Health Potions: %health_potions%
+        echo.
+        echo You have no health potions.
+        echo.
+        pause
+        goto Event_2_1 
+    )
+)
+pause
+goto Event_2_1
 
 :Random_Event_1
 cls
-echo Random_Event_1
+echo Health: %player_health%     Attack: %player_attack%
+echo Health Potions: %health_potions%
+echo.
+echo In the entrance of the room there is a sword laying on the ground.
+echo In your head you hear a high pitched voice say "I see we have an intruder to our hive. You will pay with your life but we will at least make it fun."
+echo.
+echo ^.^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^|^_^.^_^.^_^.^_^.^_^.^_^.^_^.^_^.^_^.^_^.
+echo  ^\^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^|^_^#^_^#^_^#^_^#^_^#^_^#^_^#^_^#^_^#^_^|
+echo                                                        ^l
+echo.
 pause
 goto Menu
 
