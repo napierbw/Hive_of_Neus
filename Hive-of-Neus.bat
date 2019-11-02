@@ -5,6 +5,16 @@ if "%1" neq "" ( goto %1)
 
 :Menu
 cls
+echo.
+echo 888  888d8b                                   q8Y    888888     888                  Y8888P
+echo 888  888Y8P                                  q88     888888     888                 d88b d88P
+echo 888  888                                    q8b      888 888    888                 Y88b.
+echo 88888888888888  888 .d88b.      Y88888P  888888888   888  888   888 .d88b. 888   888 Y888b.
+echo 888  888888888  888d8P  Y8b   d88P   Y88b888888888   888   888  888d8P  Y8b888   888    Y88b.
+echo 888  888888Y88  88P88888888   888     888   888      888    888 88888888888888   888      888
+echo 888  888888 Y8bd8P Y8b.       Y88b   d88P   888      888     888888Y8b.    888   888Y88b d88P
+echo 888  888888  Y88P   'Y8888      Y88888P     888      888      88888 'Y8888 888888888 Y8888P
+echo.
 echo You must enter 1, 2, 3, or 4.
 echo.
 echo 1. New Game
@@ -158,9 +168,55 @@ goto Event_1_1
 
 :Event_2
 cls
-echo Event_2
+echo You walk into a dimly lit room with stone floors and walls.
+echo ^On the north wall there is a drawing of a dragon etched into the stone.
+echo.
+echo                      ^/^\         ^/^\^_^_
+echo                    ^/^/ ^\       ^(  ^0 ^)^_^_^_^_^_^/^\            ^_^_
+echo                   ^/^/ ^\ ^\     ^(^v^v          ^o^|          ^/^^^v^\
+echo                 ^/^/    ^\ ^\   ^(^v^v^v^v  ^_^_^_^-^-^-^-^-^^        ^/^^^^^/^\^v^v^\
+echo               ^/^/  ^/     ^\ ^\ ^|^v^v^v^v^v^/               ^/^^^^^/    ^\^v^\
+echo              ^/^/  ^/       ^(^\^\^/^v^v^v^v^/              ^/^^^^^/       ^\^v^\
+echo             ^/^/  ^/  ^/  ^\ ^(  ^/^v^v^v^v^/              ^/^^^^^/^-^-^-^(     ^\^v^\
+echo            ^/^/  ^/  ^/    ^\^( ^/^v^v^v^v^/^-^-^-^-^(^O        ^/^^^^^/           ^\^v^\
+echo           ^/^/  ^/  ^/  ^\  ^(^/^v^v^v^v^/               ^/^^^^^/             ^\^v^|
+echo         ^/^/  ^/  ^/    ^\^( ^v^v^v^v^/                ^/^^^^^/               ^|^|
+echo        ^/^/  ^/  ^/    ^(  ^v^v^v^v^/                 ^|^^^^^|              ^/^/
+echo       ^/^/  ^/ ^/    ^(  ^|^v^v^v^v^|                  ^/^^^^^/            ^/^/
+echo      ^/^/  ^/ ^/   ^(    ^\^v^v^v^v^v^\          ^)^-^-^-^-^-^/^^^^^/           ^/^/
+echo     ^/^/ ^/ ^/ ^(          ^\^v^v^v^v^v^\            ^/^^^^^^^/          ^/^/
+echo    ^/^/^/ ^/^(               ^\^v^v^v^v^v^\        ^/^^^^^^^^^/          ^/^/
+echo   ^/^/^/^(              ^)^-^-^-^-^-^\^v^v^v^v^v^\    ^/^^^^^^^^^/^-^-^-^-^-^(      ^\^\
+echo  ^/^/^(                        ^\^v^v^v^v^v^\^/^^^^^^^^^/               ^\^\
+echo ^/^(                            ^\^v^v^v^v^^^^^^^/                 ^/^/
+echo                                 ^\^v^v^^^/         ^/        ^/^/
+echo                                              ^/^<^_^_^_^_^_^_^/^/
+echo                                             ^<^<^<^-^-^-^-^-^-^/
+echo                                              ^\^<
+echo                                               ^\
+echo.
+rem Art taken from: https://www.asciiart.eu/mythology/dragons, Escape characters added here
 pause
-goto Menu
+cls
+echo As you stare at the drawing your ears suddenly are filled with the sound of buzzing.
+echo From the cave entrance two giant hornets appear!
+echo.
+echo                  ^_  ^_
+echo                ^| ^)^/ ^)
+echo             ^\^\ ^|^/^/^,^' ^_^_
+echo             ^(^"^)^(^_^)^-^"^(^)^)^)^=^-
+echo                ^(^\^\
+echo.
+echo.
+echo                             ^_  ^_
+echo                           ^| ^)^/ ^)
+echo                        ^\^\ ^|^/^/^,^' ^_^_
+echo                        ^(^"^)^(^_^)^-^"^(^)^)^)^=^-
+echo                           ^(^\^\
+echo.
+rem Art taken from: https://www.asciiart.eu/animals/insects/bees, Escape characters added here
+pause
+goto Random_Event_1
 
 :Random_Event_1
 cls
